@@ -1,6 +1,6 @@
-const addTask = (task) => {
-    return async (dispatch) => {
-        try {
+const addTask = async (task) => {
+    try{
+        console.log(JSON.stringify(task));
         const res = await fetch("http://localhost:1337/api/tasks", {
             method: "POST",
             headers: {
@@ -9,71 +9,76 @@ const addTask = (task) => {
             body: JSON.stringify(task),
         });
         const data = await res.json();
-        dispatch({
-            type: "ADD_TASK",
-            payload: data.data,
-        });
-        } catch (err) {
-        console.log(err);
-        }
-    };
+        console.log(data);
+        window.location.reload();
+    }
+    catch(err){
+        console.log(err)}
+
+    
     };
 
-const deleteTask = (id) => {
-    return async (dispatch) => {
+const deleteTask = async (id) => {
+   
         try {
         await fetch(`http://localhost:1337/api/tasks/${id}`, {
             method: "DELETE",
         });
-        dispatch({
-            type: "DELETE_TASK",
-            payload: id,
-        });
+        window.location.reload();
+       
         } catch (err) {
         console.log(err);
         }
-    };
+   
     }
-const doneTask = (id) => {
-    return async (dispatch) => {
+const doneTask = async (id) => {
+    var body = {
+        data: {
+            completed: true
+        }
+    }
+    
         try {
         const res = await fetch(`http://localhost:1337/api/tasks/${id}`, {
             method: "PUT",
             headers: {
             "Content-Type": "application/json",
             },
-            body: JSON.stringify({ completed: true }),
+            body: JSON.stringify(body),
         });
         const data = await res.json();
-        dispatch({
-            type: "DONE_TASK",
-            payload: data.data,
-        });
+
+        console.log(data);
+        window.location.reload();
+       
         } catch (err) {
         console.log(err);
         }
-    };
+    
     }
 
-    const undoneTask = (id) => {
-        return async (dispatch) => {
+    const undoneTask =async (id) => {
+        var body = {
+            data: {
+                completed: false
+            }
+        }
+        
             try {
             const res = await fetch(`http://localhost:1337/api/tasks/${id}`, {
                 method: "PUT",
                 headers: {
                 "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ completed: false }),
+                body: JSON.stringify(body),
             });
             const data = await res.json();
-            dispatch({
-                type: "UNDONE_TASK",
-                payload: data.data,
-            });
+            window.location.reload();
+            
             } catch (err) {
             console.log(err);
             }
-        };
+    
         }
 
     

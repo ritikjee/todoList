@@ -35,7 +35,7 @@ function Home() {
       <h1 className="text-3xl font-bold my-4">Tasks</h1>
       <ul>
         {tasks.map((task) => (
-         <Card key={task.id} title={task.attributes.title} description={task.attributes.description} id={task.id} completed={task.attributes.completed}/>
+         <Card key={task.id} title={task.attributes.title} description={task.attributes.Description} id={task.id} completed={task.attributes.completed}/>
         ))}
       </ul>
     </main>

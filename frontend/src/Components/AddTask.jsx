@@ -4,7 +4,7 @@ import { addTask } from '../Controller/controller';
 function AddTask() {
     const [task, setTask] = useState({
         task: "",
-        description: "",
+        Description: "",
     })
 
     const handleChange = (e) => {
@@ -13,10 +13,20 @@ function AddTask() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTask(task);
+        let item = task
+        let body={
+            data:{
+                title: item.task,
+                Description: item.Description,
+                completed: false
+            }
+        }
+        console.log(body);
+        addTask(body);
+        console.log(body);
         setTask({
             task: "",
-            description: "",
+            Description: "",
         });
     }
 
@@ -25,11 +35,11 @@ function AddTask() {
             <label className="label">
                 <span className="label-text">Enter your task</span>
             </label>
-            <input type="text" onChange={handleChange} name='task' value={task.task} placeholder="Type here" className="input w-full input-lg" />
+            <input type="text" onChange={handleChange}  name='task' value={task.task} placeholder="Type here" className="input w-full input-lg " />
             <label className="label">
                 <span className="label-text">Enter your description</span>
             </label>
-            <input type="text" onChange={handleChange} name='description' value={task.description} placeholder="Type here" className="input w-full input-lg" />
+            <input type="text" onChange={handleChange} name='Description' value={task.Description} placeholder="Type here" className="input w-full input-lg" />
             <div className='flex justify-center py-10'>
                 <button className='btn btn-primary' onClick={handleSubmit}>Add Task</button>
             </div>
