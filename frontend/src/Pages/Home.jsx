@@ -14,7 +14,6 @@ function Home() {
       const res = await fetch("http://localhost:1337/api/tasks")
       const data = await res.json()
       setTasks(data.data)
-      console.log(data.data)
       }
       catch(err){
         console.log(err)
