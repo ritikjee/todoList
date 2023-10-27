@@ -368,13 +368,14 @@ export interface ApiTaskTask extends Schema.CollectionType {
     singularName: 'task';
     pluralName: 'tasks';
     displayName: 'task';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    Description: Attribute.Text;
+    Description: Attribute.Text & Attribute.Required;
     completed: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
