@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import { addTask } from '../Controller/controller';
 
+
 function AddTask() {
     const [task, setTask] = useState({
         task: "",
@@ -21,9 +22,9 @@ function AddTask() {
                 completed: false
             }
         }
-        console.log(body);
+
         addTask(body);
-        console.log(body);
+
         setTask({
             task: "",
             Description: "",
